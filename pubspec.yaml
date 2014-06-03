@@ -1,0 +1,12 @@
+name: tekartik_jquery
+author: alex@tekartik.com
+description: jquery for dart
+dependencies:
+  browser: any
+  tekartik_common:
+    path: ../tekartik_common.dart
+dev_dependencies:
+  tekartik_jquery_asset:
+#    path: ../tekartik_jquery_asset.dart
+    git: https://github.com/alextekartik/tekartik_jquery_asset.dart.git
+  
