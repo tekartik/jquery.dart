@@ -26,4 +26,14 @@ abstract class JObjectWithElement extends Object {
     }
     jsObject.callMethod("fadeOut", args);
   }
+
+  String get id => getAttr('id');
+
+  String getAttr(String name) {
+    return jsObject.callMethod('attr', [name]);
+  }
+
+  setAttr(String name, String value) {
+    return jsObject.callMethod('attr', [name, value]);
+  }
 }

@@ -1,13 +1,14 @@
 name: tekartik_jquery
+version: 0.0.1
 author: alex@tekartik.com
 description: jquery for dart
 dependencies:
   browser: any
   tekartik_utils:
-#    path: ../tekartik_common.dart
+#    path: ../tekartik_utils.dart
     git: https://github.com/alextekartik/tekartik_utils.dart.git
 dev_dependencies:
+  unittest: any
   tekartik_jquery_asset:
 #    path: ../tekartik_jquery_asset.dart
     git: https://github.com/alextekartik/tekartik_jquery_asset.dart.git
-  
