@@ -3,8 +3,9 @@ author: alex@tekartik.com
 description: jquery for dart
 dependencies:
   browser: any
-  tekartik_common:
-    path: ../tekartik_common.dart
+  tekartik_utils:
+#    path: ../tekartik_common.dart
+    git: https://github.com/alextekartik/tekartik_utils.dart.git
 dev_dependencies:
   tekartik_jquery_asset:
 #    path: ../tekartik_jquery_asset.dart

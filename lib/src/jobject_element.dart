@@ -1,6 +1,7 @@
 part of tekartik_jquery;
 
 class JObjectElement extends JObjectBase with JObjectWithElement {
+  JObjectElement.empty() : super.empty();
   JObjectElement(JsObject jsObject) : super(jsObject);
 }
 
