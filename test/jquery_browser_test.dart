@@ -2,6 +2,7 @@ library jquery_browser_test;
 
 import 'package:tekartik_jquery/jquery.dart';
 import 'package:tekartik_utils/js_utils.dart';
+import 'package:tekartik_utils/version.dart';
 import 'package:tekartik_utils/test_utils_browser.dart';
 
 void main() {
@@ -11,14 +12,32 @@ void main() {
     test('version', () {
       // Simple test we make sure you run unit test when jquery is updated...
       expect(jQueryVersion, "2.1.0");
+      Version version = new Version.parse(jQueryVersion);
+      expect(version.major, 2);
+      expect(version.minor, 1);
+      expect(version.patch, 0);
+      
+      Version versionCurrent = new Version(2, 1, 0);
+      expect(version >= versionCurrent, isTrue);
     });
   });
+  
+  
   group('JElement', () {
     test('element', () {
       Element element = new DivElement();
       JElement jDiv = jElement(element);
       expect(element, jDiv.element);
     });
+    test('call method', () {
+        Element element = new DivElement();
+        
+        JElement jDiv = jElement(element);
+        
+        expect(jDiv.callMethod("attr", ["id"]), null);
+        element.id = "my_id";
+        expect(jDiv.callMethod("attr", ["id"]), "my_id");
+      });
     test('querySelector', () {
       expect(jQuerySelector('body').element, document.body);
       expect(jQuerySelector('nobody').element, null);

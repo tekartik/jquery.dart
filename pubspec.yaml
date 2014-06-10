@@ -4,11 +4,15 @@ author: alex@tekartik.com
 description: jquery for dart
 dependencies:
   browser: any
+  collection: any
+  tekartik_jquery_asset:
+    git: https://github.com/alextekartik/tekartik_jquery_asset.dart.git
   tekartik_utils:
-#    path: ../tekartik_utils.dart
     git: https://github.com/alextekartik/tekartik_utils.dart.git
+dependency_overrides:
+  tekartik_utils:
+    path: ../tekartik_utils.dart
+  tekartik_jquery_asset:
+    path: ../tekartik_jquery_asset.dart
 dev_dependencies:
   unittest: any
-  tekartik_jquery_asset:
-#    path: ../tekartik_jquery_asset.dart
-    git: https://github.com/alextekartik/tekartik_jquery_asset.dart.git

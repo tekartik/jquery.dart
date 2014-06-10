@@ -7,8 +7,10 @@ abstract class JObjectBase {
   JObjectBase.empty();
   JObjectBase(this.jsObject);
 
-
-
+  callMethod(String method, [List args]) {
+    return jsObject.callMethod(method, args);
+  }
+  
   String toString() => jsObjectToDebugString(jsObject);
 
   bool get hasLength {

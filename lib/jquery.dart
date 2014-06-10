@@ -5,6 +5,7 @@ import 'dart:html';
 import 'package:tekartik_utils/string_enum.dart';
 import 'package:tekartik_utils/js_utils.dart';
 import 'package:tekartik_utils/dev_utils.dart';
+import 'package:tekartik_utils/version.dart';
 
 part 'src/jobject_base.dart';
 part 'src/jelement.dart';
@@ -32,6 +33,14 @@ JsObject queryElement(Element element) {
   return _queryElement(element);
 }
 
+JsObject get jsDocument {
+  return _callJQuery([document]);
+}
+
+JsObject jsElement(Element element) {
+  return _queryElement(element);
+}
+
 JsObject _queryElement(Element element) {
   return _callJQuery([element]);
 }
@@ -39,7 +48,7 @@ JsObject _queryElement(Element element) {
 JsObject _queryElementList(List<Element> elements) {
   JsObject jsObject = _callJQuery([]); // Notice the enclosed empty array
   devPrint(jsObjectToDebugString(jsObject));
-  
+
   // jsObject = jsObject.callMethod('add', elements);
   // as of 2014-06-05 this is the best solutions as above does not work
   elements.forEach((Element element) {
@@ -52,10 +61,33 @@ JsObject _queryElementList(List<Element> elements) {
 class JQuery {
   JsObject jsObject;
   JQuery(this.jsObject);
-  
+
+  Version _version;
+  Version get version {
+    if (_version == null) {
+      _version = new Version.parse(jsObject['fn']['jquery']);
+    }
+    return _version;
+  }
+
 }
 
-JQuery jQuery = new JQuery(context['jQuery']);
+JQuery _jQuery;
+
+JQuery get jQuery {
+  if (_jQuery == null) {
+    _jQuery = new JQuery(context['jQuery']);
+    if (_jQuery.jsObject == null) {
+      devError("Missing jQuery");
+    }
+    // test version
+    Version versionMin = new Version(2, 1, 0);
+    if (_jQuery.version < versionMin) {
+      devError("jquery: invalid jQuery version '${_jQuery.version}' expected min $versionMin");
+    }
+  }
+  return _jQuery;
+}
 
 JObjectElement jQuerySelector(String selector) {
   return new JObjectElement(_querySelector(selector));
@@ -78,4 +110,5 @@ JElementList jElementList(List<Element> elements) {
 }
 
 // e.g. 2.1.0
+@deprecated
 String get jQueryVersion => context['jQuery']['fn']['jquery'];
