@@ -74,6 +74,14 @@ class JQuery {
 
 JQuery _jQuery;
 
+JsObject get _jsQuery => context['jQuery'];
+
+/**
+ * raw js jQuery object
+ * only to use to test if jquery is loaded
+ */
+JsObject get jsQuery => _jsQuery;
+
 JQuery get jQuery {
   if (_jQuery == null) {
     _jQuery = new JQuery(context['jQuery']);
