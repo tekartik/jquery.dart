@@ -14,6 +14,7 @@ abstract class JList<T> extends Object {
 
 abstract class JObjectWithElement extends Object {
   JsObject get jsObject;
+  callMethod(String method, [List args]);
   void fadeIn([FadeDuration duration]) {
     List args = [];
     if (duration != null) {
@@ -23,7 +24,11 @@ abstract class JObjectWithElement extends Object {
   }
 
   void hide() {
-    jsObject.callMethod("hide", []);
+    callMethod("hide", []);
+  }
+  
+  void show() {
+    callMethod("show", []);
   }
 
   void fadeOut([FadeDuration duration]) {
