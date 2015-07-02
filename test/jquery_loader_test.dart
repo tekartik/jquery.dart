@@ -1,30 +1,31 @@
+@TestOn("browser")
 library jquery_browser_test;
 
 import 'package:tekartik_jquery/jquery.dart';
 import 'package:tekartik_jquery/jquery_loader.dart';
-import 'package:tekartik_utils/test_utils_browser.dart';
+import 'package:test/test.dart';
+import 'dart:html';
 
 void main() {
-  useHtmlConfiguration();
 
   group('loader', () {
-    test('version', () {
+    test('version', () async {
       // Simple test we make sure you run unit test when jquery is updated...
-      expect(jsQuery, null);
-      return loadJQuery().then((jq) {
-        expect(jsQuery, isNotNull);
-        expect(jq.version, JQUERY_DEFAULT_VERSION);
-        expect(jQuery.version, JQUERY_DEFAULT_VERSION);
+      expect(jsQuery, isNull);
+      JQuery jq = await loadJQuery();
+      expect(jsQuery, isNotNull);
+      expect(jq.version, jQueryVersionDefault);
+      expect(jQuery.version, jQueryVersionDefault);
 
-        //quick test
-        Element element = new DivElement();
+      //quick test
+      Element element = new DivElement();
 
-        JElement jDiv = jElement(element);
+      JElement jDiv = jElement(element);
 
-        expect(jDiv.callMethod("attr", ["id"]), null);
-        element.id = "my_id";
-        expect(jDiv.callMethod("attr", ["id"]), "my_id");
-      });
+      expect(jDiv.callMethod("attr", ["id"]), null);
+      element.id = "my_id";
+      expect(jDiv.callMethod("attr", ["id"]), "my_id");
+
     });
 
   });

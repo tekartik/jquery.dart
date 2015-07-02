@@ -1,10 +1,12 @@
 part of tekartik_jquery;
 
+/*
 @deprecated
 class JObjectElement extends JObjectBase with JObjectWithElement {
   JObjectElement.empty() : super.empty();
   JObjectElement(JsObject jsObject) : super(jsObject);
 }
+*/
 
 abstract class JList<T> extends Object {
   JsObject get jsObject;
@@ -39,7 +41,7 @@ abstract class JObjectWithElement extends Object {
     jsObject.callMethod("fadeOut", args);
   }
 
-  String get id => getAttr('id');
+  String get id => element.id;
 
   @deprecated
   /**

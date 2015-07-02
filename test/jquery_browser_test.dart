@@ -1,24 +1,26 @@
+@TestOn("browser")
 library jquery_browser_test;
 
 import 'package:tekartik_jquery/jquery.dart';
+import 'package:tekartik_jquery/jquery_loader.dart';
 import 'package:tekartik_utils/js_utils.dart';
-import 'package:tekartik_utils/version.dart';
-import 'package:tekartik_utils/test_utils_browser.dart';
+import 'package:test/test.dart';
+import 'dart:js';
+import 'dart:html';
 
 void main() {
-  useHtmlConfiguration();
+
+  setUp(() async {
+    await loadJQuery();
+  });
 
   group('Global', () {
+
+
     test('version', () {
       // Simple test we make sure you run unit test when jquery is updated...
-      expect(jQueryVersion, "2.1.0");
-      Version version = new Version.parse(jQueryVersion);
-      expect(version.major, 2);
-      expect(version.minor, 1);
-      expect(version.patch, 0);
-      
-      Version versionCurrent = new Version(2, 1, 0);
-      expect(version >= versionCurrent, isTrue);
+      expect(jQuery.version >= jQueryVersionMin, isTrue);
+      expect(jQuery.version, jQueryVersionDefault);
     });
   });
   
@@ -101,9 +103,7 @@ void main() {
           ..attributes['test'] = 'value1';
       JElement jDiv = jElement(element);
       expect(jDiv.id, 'my_id');
-      expect(jDiv.getAttr('test'), 'value1');
-      jDiv.setAttr('test2', 'value2');
-      expect(element.attributes['test2'], 'value2');
+      expect(jDiv.element.attributes['test'], 'value1');
     });
 
     test('JsObject', () {
@@ -127,7 +127,7 @@ void main() {
 
       Element container = new DivElement();
       container.children.addAll([element, element2]);
-      JElement jContainer = jElement(container);
+      //JElement jContainer = jElement(container);
       //jElement.q
       //que
 
