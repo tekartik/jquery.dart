@@ -22,9 +22,13 @@ void main() {
       expect(jQuery.version >= jQueryVersionMin, isTrue);
       expect(jQuery.version, jQueryVersionDefault);
     });
+
+    test('map', () {
+      expect(jQuery['jquery'], jQuery.version.toString());
+    });
   });
-  
-  
+
+
   group('JElement', () {
     test('element', () {
       Element element = new DivElement();
@@ -33,9 +37,9 @@ void main() {
     });
     test('call method', () {
         Element element = new DivElement();
-        
+
         JElement jDiv = jElement(element);
-        
+
         expect(jDiv.callMethod("attr", ["id"]), null);
         element.id = "my_id";
         expect(jDiv.callMethod("attr", ["id"]), "my_id");

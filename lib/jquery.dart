@@ -61,16 +61,19 @@ JsObject _queryElementList(List<Element> elements) {
 }
 
 class JQuery {
-  JsObject jsObject;
-  JQuery(this.jsObject);
+  JsObject _jsObject;
+  JsObject get jsObject => _jsObject;
+  JQuery._(this._jsObject);
 
   Version _version;
   Version get version {
     if (_version == null) {
-      _version = new Version.parse(jsObject['fn']['jquery']);
+      _version = new Version.parse(this['jquery']);
     }
     return _version;
   }
+
+  operator [](Object key) => _jsObject['fn'][key];
 
 }
 
@@ -82,12 +85,13 @@ JsObject get _jsQuery => context['jQuery'];
  * raw js jQuery object
  * only to use to test if jquery is loaded
  */
+@deprecated
 JsObject get jsQuery => _jsQuery;
 
 JQuery get jQuery {
   if (_jQuery == null) {
-    _jQuery = new JQuery(context['jQuery']);
-    if (_jQuery.jsObject == null) {
+    _jQuery = new JQuery._(_jsQuery);
+    if (_jQuery._jsObject == null) {
       throw("Missing jQuery");
     }
     // test version
