@@ -8,7 +8,6 @@ void main() {
 
   group('loaded', () {
     test('version', () {
-      expect(jsQuery, isNotNull);
       expect(jQuery.version, jQueryVersionDefault);
     });
 

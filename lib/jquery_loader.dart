@@ -4,6 +4,7 @@ import 'package:tekartik_utils/js_utils.dart';
 import 'package:pub_semver/pub_semver.dart';
 import 'package:tekartik_jquery/jquery.dart';
 import 'dart:async';
+import 'dart:js';
 import 'jquery.dart';
 
 Future<JQuery> loadJQuery({Version version}) async {
@@ -12,7 +13,7 @@ Future<JQuery> loadJQuery({Version version}) async {
   }
 
   // already loaded?
-  if (jsQuery != null) {
+  if (context['jQuery'] != null) {
     if (jQuery.version < version) {
       throw("jQuery version expected $version but currently loaded is ${jQuery.version}");
     }

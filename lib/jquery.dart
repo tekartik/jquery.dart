@@ -68,12 +68,13 @@ class JQuery {
   Version _version;
   Version get version {
     if (_version == null) {
-      _version = new Version.parse(this['jquery']);
+      _version = new Version.parse(fn('jquery'));
     }
     return _version;
   }
 
-  operator [](Object key) => _jsObject['fn'][key];
+  fn(Object key) => _jsObject['fn'][key];
+  operator [](Object key) => _jsObject[key];
 
 }
 

@@ -24,7 +24,7 @@ void main() {
     });
 
     test('map', () {
-      expect(jQuery['jquery'], jQuery.version.toString());
+      expect(jQuery.fn('jquery'), jQuery.version.toString());
     });
   });
 

@@ -5,15 +5,16 @@ import 'package:tekartik_jquery/jquery.dart';
 import 'package:tekartik_jquery/jquery_loader.dart';
 import 'package:test/test.dart';
 import 'dart:html';
+import 'dart:js';
 
 void main() {
 
   group('loader', () {
     test('version', () async {
       // Simple test we make sure you run unit test when jquery is updated...
-      expect(jsQuery, isNull);
+      expect(context['jQuery'], isNull);
       JQuery jq = await loadJQuery();
-      expect(jsQuery, isNotNull);
+      expect(context['jQuery'], isNotNull);
       expect(jq.version, jQueryVersionDefault);
       expect(jQuery.version, jQueryVersionDefault);
 
