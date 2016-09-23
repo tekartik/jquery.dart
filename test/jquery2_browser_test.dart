@@ -11,8 +11,8 @@ import 'dart:html';
 void main() {
 
   setUp(() async {
-    await loadJQuery();
-    //await loadJQuery(version: jQueryVersion2Default);
+    //await loadJQuery();
+    await loadJQuery(version: jQueryVersion2Default);
   });
 
   group('Global', () {
@@ -21,7 +21,7 @@ void main() {
     test('version', () {
       // Simple test we make sure you run unit test when jquery is updated...
       expect(jQuery.version >= jQueryVersionMin, isTrue);
-      expect(jQuery.version, jQueryVersionDefault);
+      expect(jQuery.version, jQueryVersion2Default);
     });
 
     test('map', () {
@@ -111,7 +111,7 @@ void main() {
       expect(jDiv.element.attributes['test'], 'value1');
     });
 
-    skip_test('JsObject', () {
+    test('JsObject', () {
       Element element = new DivElement()
           ..id = "my_id"
           ..attributes['test'] = 'value1';
@@ -119,7 +119,6 @@ void main() {
       JsObject jsObject = jDiv.jsObject;
       expect(jDiv.jsObject.runtimeType, JsObject);
       expect(jsRuntimeType(jDiv.jsObject), ''); // Empty runtime type
-      print(jDiv);
       // Currently 3 keys
       expect(jsObjectKeys(jDiv.jsObject).length, 3);
       expect(jsObject['0'], element);

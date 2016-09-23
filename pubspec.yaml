@@ -8,6 +8,8 @@ dependencies:
   pub_semver: any
   tekartik_jquery_asset:
     git: git://github.com/alextekartik/tekartik_jquery_asset.dart
+  tekartik_browser_utils:
+    git: git://github.com/tekartik/tekartik_browser_utils.dart
   tekartik_utils:
     git: git://github.com/alextekartik/tekartik_utils.dart
 # dependency_overrides:
@@ -17,3 +19,4 @@ dependencies:
 #     path: ../tekartik_jquery_asset.dart
 dev_dependencies:
   test: any
+  dev_test: '>=0.9.3'

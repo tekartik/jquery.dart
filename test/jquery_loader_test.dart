@@ -4,7 +4,7 @@ library jquery_browser_test;
 import 'package:tekartik_jquery/jquery.dart';
 import 'package:tekartik_jquery/jquery_loader.dart';
 import 'package:test/test.dart';
-import 'dart:html';
+//import 'dart:html';
 import 'dart:js';
 
 void main() {
@@ -18,6 +18,7 @@ void main() {
       expect(jq.version, jQueryVersionDefault);
       expect(jQuery.version, jQueryVersionDefault);
 
+      /*
       //quick test
       Element element = new DivElement();
 
@@ -26,6 +27,7 @@ void main() {
       expect(jDiv.callMethod("attr", ["id"]), null);
       element.id = "my_id";
       expect(jDiv.callMethod("attr", ["id"]), "my_id");
+      */
 
     });
 
