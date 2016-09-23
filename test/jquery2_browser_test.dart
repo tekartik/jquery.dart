@@ -120,6 +120,8 @@ void main() {
       expect(jDiv.jsObject.runtimeType, JsObject);
       expect(jsRuntimeType(jDiv.jsObject), ''); // Empty runtime type
       // Currently 3 keys
+      // print(jsObjectToDebugString(jDiv.jsObject));
+      // {0: div, context: div, length: 1}
       expect(jsObjectKeys(jDiv.jsObject).length, 3);
       expect(jsObject['0'], element);
       expect(jsObject[0], element);

@@ -111,7 +111,7 @@ void main() {
       expect(jDiv.element.attributes['test'], 'value1');
     });
 
-    skip_test('JsObject', () {
+    test('JsObject', () {
       Element element = new DivElement()
           ..id = "my_id"
           ..attributes['test'] = 'value1';
@@ -119,12 +119,13 @@ void main() {
       JsObject jsObject = jDiv.jsObject;
       expect(jDiv.jsObject.runtimeType, JsObject);
       expect(jsRuntimeType(jDiv.jsObject), ''); // Empty runtime type
-      print(jDiv);
-      // Currently 3 keys
-      expect(jsObjectKeys(jDiv.jsObject).length, 3);
+      // print(jsObjectToDebugString(jDiv.jsObject))
+      // {0: div, length: 1}
+      // Currently 2 keys instead of 3 for jquery 2
+      expect(jsObjectKeys(jDiv.jsObject).length, 2);
       expect(jsObject['0'], element);
       expect(jsObject[0], element);
-      expect(jsObject["context"], element);
+      //expect(jsObject["context"], element);
       expect(jsObject["length"], 1);
 
       Element element2 = new DivElement()
