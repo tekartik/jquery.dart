@@ -1,5 +1,5 @@
 name: tekartik_jquery
-version: 0.2.0
+version: 0.2.2
 author: Alexandre Roux <alex@tekartik.com>
 description: jquery for dart
 environment:
@@ -9,11 +9,9 @@ dependencies:
   collection: '>=1.9.1'
   pub_semver: '>=1.3.0'
   tekartik_jquery_asset:
-    git: git://github.com/alextekartik/tekartik_jquery_asset.dart
+    git: git://github.com/tekartik/tekartik_jquery_asset.dart
   tekartik_browser_utils:
     git: git://github.com/tekartik/tekartik_browser_utils.dart
-  tekartik_utils:
-    git: git://github.com/alextekartik/tekartik_utils.dart
 # dependency_overrides:
 #   tekartik_utils:
 #     path: ../tekartik_utils.dart

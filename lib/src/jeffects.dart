@@ -1,6 +1,8 @@
 part of tekartik_jquery;
 
-class _FadeDurationStringEnum extends StringEnum with FadeDuration {}
+class _FadeDurationStringEnum extends StringEnum with FadeDuration {
+  _FadeDurationStringEnum(String name): super(name);
+}
 
 class _FadeDurationNumber extends Object with FadeDuration {
   final int duration;
@@ -11,7 +13,7 @@ class _FadeDurationNumber extends Object with FadeDuration {
 
 abstract class FadeDuration {
   factory FadeDuration.withName(String name) {
-    return new _FadeDurationStringEnum()..name = name;
+    return new _FadeDurationStringEnum(name);
   }
   factory FadeDuration.withDuration(int ms) {
     return new _FadeDurationNumber(ms);

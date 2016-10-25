@@ -2,14 +2,14 @@ library tekartik_jquery;
 
 import 'dart:js';
 import 'dart:html';
-import 'package:tekartik_utils/string_enum.dart';
+import 'package:tekartik_common_utils/string_enum.dart';
 import 'package:tekartik_browser_utils/js_utils.dart';
 import 'package:pub_semver/pub_semver.dart';
 
 part 'src/jobject_base.dart';
 part 'src/jelement.dart';
 part 'src/jobject_element.dart';
-part 'src/jelementlist.dart';
+part 'src/jelement_list.dart';
 part 'src/jeffects.dart';
 
 Version get jQueryVersionMin => new Version(2, 1, 4);
