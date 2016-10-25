@@ -1,7 +1,5 @@
 part of tekartik_jquery;
 
-
-
 abstract class JObjectBase {
   JsObject jsObject;
   JObjectBase.empty();
@@ -10,7 +8,7 @@ abstract class JObjectBase {
   callMethod(String method, [List args]) {
     return jsObject.callMethod(method, args);
   }
-  
+
   String toString() => jsObjectToDebugString(jsObject);
 
   bool get hasLength {

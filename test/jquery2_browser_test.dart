@@ -9,15 +9,12 @@ import 'dart:js';
 import 'dart:html';
 
 void main() {
-
   setUp(() async {
     //await loadJQuery();
     await loadJQuery(version: jQueryVersion2Default);
   });
 
   group('Global', () {
-
-
     test('version', () {
       // Simple test we make sure you run unit test when jquery is updated...
       expect(jQuery.version >= jQueryVersionMin, isTrue);
@@ -29,7 +26,6 @@ void main() {
     });
   });
 
-
   group('JElement', () {
     test('element', () {
       Element element = new DivElement();
@@ -37,14 +33,14 @@ void main() {
       expect(element, jDiv.element);
     });
     test('call method', () {
-        Element element = new DivElement();
+      Element element = new DivElement();
 
-        JElement jDiv = jElement(element);
+      JElement jDiv = jElement(element);
 
-        expect(jDiv.callMethod("attr", ["id"]), null);
-        element.id = "my_id";
-        expect(jDiv.callMethod("attr", ["id"]), "my_id");
-      });
+      expect(jDiv.callMethod("attr", ["id"]), null);
+      element.id = "my_id";
+      expect(jDiv.callMethod("attr", ["id"]), "my_id");
+    });
     test('querySelector', () {
       expect(jQuerySelector('body').element, document.body);
       expect(jQuerySelector('nobody').element, null);
@@ -74,14 +70,14 @@ void main() {
 
     test('querySelector', () {
       Element element = new DivElement()
-          ..id = "my_id"
-          ..classes = ["my-class"]
-          ..attributes['test'] = 'value1';
+        ..id = "my_id"
+        ..classes = ["my-class"]
+        ..attributes['test'] = 'value1';
 
       Element element2 = new DivElement()
-          ..id = "my_id2"
-          ..classes = ["my-class"]
-          ..attributes['test'] = 'value2';
+        ..id = "my_id2"
+        ..classes = ["my-class"]
+        ..attributes['test'] = 'value2';
 
       Element container = new DivElement();
       container.children.addAll([element, element2]);
@@ -104,8 +100,8 @@ void main() {
   group('JObjectElement', () {
     test('id and attr', () {
       Element element = new DivElement()
-          ..id = "my_id"
-          ..attributes['test'] = 'value1';
+        ..id = "my_id"
+        ..attributes['test'] = 'value1';
       JElement jDiv = jElement(element);
       expect(jDiv.id, 'my_id');
       expect(jDiv.element.attributes['test'], 'value1');
@@ -113,12 +109,12 @@ void main() {
 
     test('JsObject', () {
       Element element = new DivElement()
-          ..id = "my_id"
-          ..attributes['test'] = 'value1';
+        ..id = "my_id"
+        ..attributes['test'] = 'value1';
       JElement jDiv = jElement(element);
       JsObject jsObject = jDiv.jsObject;
       expect(jDiv.jsObject.runtimeType, JsObject);
-      expect(jsRuntimeType(jDiv.jsObject), ''); // Empty runtime type
+      // expect(jsRuntimeType(jDiv.jsObject), ''); // Empty runtime type 'r' NOT TRUE on chrome
       // Currently 3 keys
       // print(jsObjectToDebugString(jDiv.jsObject));
       // {0: div, context: div, length: 1}
@@ -129,16 +125,14 @@ void main() {
       expect(jsObject["length"], 1);
 
       Element element2 = new DivElement()
-          ..id = "my_id2"
-          ..attributes['test'] = 'value2';
+        ..id = "my_id2"
+        ..attributes['test'] = 'value2';
 
       Element container = new DivElement();
       container.children.addAll([element, element2]);
       //JElement jContainer = jElement(container);
       //jElement.q
       //que
-
     });
   });
-
 }

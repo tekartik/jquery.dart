@@ -4,7 +4,6 @@ import 'dart:async';
 import 'dart:js';
 
 import 'package:pub_semver/pub_semver.dart';
-import 'package:tekartik_jquery/jquery.dart';
 import 'package:tekartik_browser_utils/js_utils.dart';
 
 import 'jquery.dart';
@@ -17,7 +16,7 @@ Future<JQuery> loadJQuery({Version version}) async {
   // already loaded?
   if (context['jQuery'] != null) {
     if (jQuery.version < version) {
-      throw("jQuery version expected $version but currently loaded is ${jQuery
+      throw ("jQuery version expected $version but currently loaded is ${jQuery
           .version}");
     }
     return jQuery;
@@ -32,5 +31,26 @@ Future<JQuery> loadJQuery({Version version}) async {
     await loadJavascriptScript(
         "packages/tekartik_jquery_asset/$version/jquery.min.js");
   }
+  return jQuery;
+}
+
+Future<JQuery> loadCdnJQuery({Version version}) async {
+  if (version == null) {
+    version = jQueryVersionDefault;
+  }
+
+  // already loaded?
+  if (context['jQuery'] != null) {
+    if (jQuery.version < version) {
+      throw ("jQuery version expected $version but currently loaded is ${jQuery
+          .version}");
+    }
+    return jQuery;
+  }
+
+  // load jquery from google
+  // https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js
+  await loadJavascriptScript(
+      "//ajax.googleapis.com/ajax/libs/jquery/$version/jquery.min.js");
   return jQuery;
 }

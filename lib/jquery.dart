@@ -78,7 +78,6 @@ class JQuery {
 
   fn(Object key) => _jsObject['fn'][key];
   operator [](Object key) => _jsObject[key];
-
 }
 
 JQuery _jQuery;
@@ -96,17 +95,16 @@ JQuery get jQuery {
   if (_jQuery == null) {
     _jQuery = new JQuery._(_jsQuery);
     if (_jQuery._jsObject == null) {
-      throw("Missing jQuery");
+      throw ("Missing jQuery");
     }
     // test version
     var versionMin = jQueryVersionMin;
     if (_jQuery.version < jQueryVersionMin) {
-      throw("jquery: invalid jQuery version '${_jQuery.version}' expected min $versionMin");
+      throw ("jquery: invalid jQuery version '${_jQuery.version}' expected min $versionMin");
     }
   }
   return _jQuery;
 }
-
 
 JElement jQuerySelector(String selector) {
   return new JElement(_querySelector(selector));

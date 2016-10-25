@@ -12,7 +12,7 @@ void main() {
     test('version', () async {
       // Simple test we make sure you run unit test when jquery is updated...
       expect(context['jQuery'], isNull);
-      JQuery jq = await loadJQuery();
+      JQuery jq = await loadCdnJQuery();
       expect(context['jQuery'], isNotNull);
       expect(jq.version, jQueryVersionDefault);
       expect(jQuery.version, jQueryVersionDefault);

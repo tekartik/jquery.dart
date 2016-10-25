@@ -1,7 +1,9 @@
 name: tekartik_jquery
-version: 0.1.0
-author: alex@tekartik.com
+version: 0.2.0
+author: Alexandre Roux <alex@tekartik.com>
 description: jquery for dart
+environment:
+  sdk: '>=1.20.1 <2.0.0'
 dependencies:
   browser: '>=0.10.0'
   collection: '>=1.9.1'
@@ -20,3 +22,5 @@ dependencies:
 dev_dependencies:
   test: any
   dev_test: '>=0.9.3'
+  chrome_travis:
+    git: git://github.com/tekartik/chrome_travis.dart

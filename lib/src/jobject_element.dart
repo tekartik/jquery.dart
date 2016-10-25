@@ -28,7 +28,7 @@ abstract class JObjectWithElement extends Object {
   void hide() {
     callMethod("hide", []);
   }
-  
+
   void show() {
     callMethod("show", []);
   }
@@ -62,10 +62,10 @@ abstract class JObjectWithElement extends Object {
   JElement querySelector(String selector) {
     return new JElement(jsObject.callMethod("find", [selector]));
   }
-  
+
   JElementList querySelectorAll(String selector) {
-      return new JElementList(jsObject.callMethod("find", [selector]));
-    }
+    return new JElementList(jsObject.callMethod("find", [selector]));
+  }
 
   int get _length => jsObject['length'];
   Element get element => _length > 0 ? jsObject[0] : null;

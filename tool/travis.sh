@@ -7,4 +7,4 @@ dartanalyzer --fatal-warnings \
   lib/jquery.dart \
   lib/jquery_loader.dart \
 
-pub run test -p vm,firefox
+pub run test -p vm,firefox,chrome

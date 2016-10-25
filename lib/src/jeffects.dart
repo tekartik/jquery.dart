@@ -10,7 +10,6 @@ class _FadeDurationNumber extends Object with FadeDuration {
 }
 
 abstract class FadeDuration {
-
   factory FadeDuration.withName(String name) {
     return new _FadeDurationStringEnum()..name = name;
   }
