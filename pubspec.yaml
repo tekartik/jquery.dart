@@ -9,9 +9,9 @@ dependencies:
   collection: '>=1.9.1'
   pub_semver: '>=1.3.0'
   tekartik_jquery_asset:
-    git: git://github.com/tekartik/tekartik_jquery_asset.dart
+    git: git://github.com/tekartik/jquery_asset.dart
   tekartik_browser_utils:
-    git: git://github.com/tekartik/tekartik_browser_utils.dart
+    git: git://github.com/tekartik/browser_utils.dart
 # dependency_overrides:
 #   tekartik_utils:
 #     path: ../tekartik_utils.dart
