@@ -3,15 +3,20 @@ version: 0.2.2
 author: Alexandre Roux <alex@tekartik.com>
 description: jquery for dart
 environment:
-  sdk: '>=1.20.1 <2.0.0'
+  sdk: '>=2.0.0-dev.63 <2.0.0'
 dependencies:
   browser: '>=0.10.0'
   collection: '>=1.9.1'
   pub_semver: '>=1.3.0'
   tekartik_jquery_asset:
-    git: git://github.com/tekartik/jquery_asset.dart
+    git:
+      url: git://github.com/tekartik/jquery_asset.dart
+      ref: dart2
   tekartik_browser_utils:
-    git: git://github.com/tekartik/browser_utils.dart
+    git:
+      url: git://github.com/tekartik/browser_utils.dart
+      ref: dart2
+
 # dependency_overrides:
 #   tekartik_utils:
 #     path: ../tekartik_utils.dart
@@ -21,4 +26,6 @@ dev_dependencies:
   test: any
   dev_test: '>=0.9.3'
   chrome_travis:
-    git: git://github.com/tekartik/chrome_travis.dart
+    git:
+      url: git://github.com/tekartik/chrome_travis.dart
+      ref: dart2

@@ -1,21 +1,27 @@
 library tekartik_jquery;
 
-import 'dart:js';
 import 'dart:html';
-import 'package:tekartik_common_utils/string_enum.dart';
-import 'package:tekartik_browser_utils/js_utils.dart';
-import 'package:pub_semver/pub_semver.dart';
+import 'dart:js';
 
-part 'src/jobject_base.dart';
-part 'src/jelement.dart';
-part 'src/jobject_element.dart';
-part 'src/jelement_list.dart';
+import 'package:pub_semver/pub_semver.dart';
+import 'package:tekartik_browser_utils/js_utils.dart';
+
 part 'src/jeffects.dart';
 
+part 'src/jelement.dart';
+
+part 'src/jelement_list.dart';
+
+part 'src/jobject_base.dart';
+
+part 'src/jobject_element.dart';
+
 Version get jQueryVersionMin => new Version(2, 1, 4);
+
 Version get jQueryVersion2Default => new Version(2, 1, 4);
 
 Version get jQueryVersion3Min => new Version(3, 1, 1);
+
 Version get jQueryVersionDefault => new Version(3, 1, 1);
 
 JsObject _querySelector(String selector) {
@@ -23,7 +29,7 @@ JsObject _querySelector(String selector) {
 }
 
 JsObject _callJQuery(List args) {
-  return context.callMethod('jQuery', args);
+  return context.callMethod('jQuery', args) as JsObject;
 }
 
 /**
@@ -57,7 +63,7 @@ JsObject _queryElementList(List<Element> elements) {
   // jsObject = jsObject.callMethod('add', elements);
   // as of 2014-06-05 this is the best solutions as above does not work
   elements.forEach((Element element) {
-    jsObject = jsObject.callMethod('add', [element]);
+    jsObject = jsObject.callMethod('add', [element]) as JsObject;
     //devPrint(jsObjectToDebugString(jsObject));
   });
   return jsObject;
@@ -65,24 +71,28 @@ JsObject _queryElementList(List<Element> elements) {
 
 class JQuery {
   JsObject _jsObject;
+
   JsObject get jsObject => _jsObject;
+
   JQuery._(this._jsObject);
 
   Version _version;
+
   Version get version {
     if (_version == null) {
-      _version = new Version.parse(fn('jquery'));
+      _version = new Version.parse(fn('jquery') as String);
     }
     return _version;
   }
 
   fn(Object key) => _jsObject['fn'][key];
+
   operator [](Object key) => _jsObject[key];
 }
 
 JQuery _jQuery;
 
-JsObject get _jsQuery => context['jQuery'];
+JsObject get _jsQuery => context['jQuery'] as JsObject;
 
 /**
  * raw js jQuery object
@@ -100,7 +110,8 @@ JQuery get jQuery {
     // test version
     var versionMin = jQueryVersionMin;
     if (_jQuery.version < jQueryVersionMin) {
-      throw ("jquery: invalid jQuery version '${_jQuery.version}' expected min $versionMin");
+      throw ("jquery: invalid jQuery version '${_jQuery
+          .version}' expected min $versionMin");
     }
   }
   return _jQuery;
@@ -130,4 +141,4 @@ JElementList jElementList(List<Element> elements) {
 
 // e.g. 2.1.0
 @deprecated
-String get jQueryVersion => context['jQuery']['fn']['jquery'];
+String get jQueryVersion => context['jQuery']['fn']['jquery'] as String;
