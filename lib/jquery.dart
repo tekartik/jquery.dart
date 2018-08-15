@@ -110,8 +110,7 @@ JQuery get jQuery {
     // test version
     var versionMin = jQueryVersionMin;
     if (_jQuery.version < jQueryVersionMin) {
-      throw ("jquery: invalid jQuery version '${_jQuery
-          .version}' expected min $versionMin");
+      throw ("jquery: invalid jQuery version '${_jQuery.version}' expected min $versionMin");
     }
   }
   return _jQuery;

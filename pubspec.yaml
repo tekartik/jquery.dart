@@ -1,11 +1,10 @@
 name: tekartik_jquery
-version: 0.2.2
+version: 0.3.0
 author: Alexandre Roux <alex@tekartik.com>
 description: jquery for dart
 environment:
-  sdk: '>=2.0.0-dev.63 <2.0.0'
+  sdk: '>=2.0.0-dev.63 <3.0.0'
 dependencies:
-  browser: '>=0.10.0'
   collection: '>=1.9.1'
   pub_semver: '>=1.3.0'
   tekartik_jquery_asset:
