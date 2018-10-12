@@ -10,8 +10,8 @@ class JObjectElement extends JObjectBase with JObjectWithElement {
 
 abstract class JList<T> extends Object {
   JsObject get jsObject;
-  int get length => jsObjectLength(jsObject);
-  T operator [](int index) => jsObject[index];
+  int get length => jsObject['length'] as int;
+  T operator [](int index) => jsObject[index] as T;
 }
 
 abstract class JObjectWithElement extends Object {
@@ -48,7 +48,7 @@ abstract class JObjectWithElement extends Object {
    * use element.attributes
    */
   String getAttr(String name) {
-    return jsObject.callMethod('attr', [name]);
+    return jsObject.callMethod('attr', [name]) as String;
   }
 
   @deprecated
@@ -60,13 +60,14 @@ abstract class JObjectWithElement extends Object {
   }
 
   JElement querySelector(String selector) {
-    return new JElement(jsObject.callMethod("find", [selector]));
+    return new JElement(jsObject.callMethod("find", [selector]) as JsObject);
   }
 
   JElementList querySelectorAll(String selector) {
-    return new JElementList(jsObject.callMethod("find", [selector]));
+    return new JElementList(
+        jsObject.callMethod("find", [selector]) as JsObject);
   }
 
-  int get _length => jsObject['length'];
-  Element get element => _length > 0 ? jsObject[0] : null;
+  int get _length => jsObject['length'] as int;
+  Element get element => _length > 0 ? (jsObject[0] as Element) : null;
 }

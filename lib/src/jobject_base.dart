@@ -15,5 +15,5 @@ abstract class JObjectBase {
     return jsObject.hasProperty('length');
   }
 
-  int get length => jsObject['length'];
+  int get length => jsObject['length'] as int;
 }

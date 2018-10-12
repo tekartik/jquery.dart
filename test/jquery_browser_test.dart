@@ -118,7 +118,8 @@ void main() {
       // print(jsObjectToDebugString(jDiv.jsObject))
       // {0: div, length: 1}
       // Currently 2 keys instead of 3 for jquery 2
-      expect(jsObjectKeys(jDiv.jsObject).length, 2);
+      // Currently 1 keys instead of 3 for jquery 3
+      expect(jsObjectKeys(jDiv.jsObject).length, 1);
       expect(jsObject['0'], element);
       expect(jsObject[0], element);
       //expect(jsObject["context"], element);
