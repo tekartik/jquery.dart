@@ -5,10 +5,11 @@ abstract class JObjectBase {
   JObjectBase.empty();
   JObjectBase(this.jsObject);
 
-  callMethod(String method, [List args]) {
+  dynamic callMethod(String method, [List args]) {
     return jsObject.callMethod(method, args);
   }
 
+  @override
   String toString() => jsObjectToDebugString(jsObject);
 
   bool get hasLength {

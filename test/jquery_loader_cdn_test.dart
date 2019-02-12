@@ -1,11 +1,12 @@
 @TestOn("browser")
 library jquery_browser_test;
 
+import 'dart:js';
+
 import 'package:tekartik_jquery/jquery.dart';
 import 'package:tekartik_jquery/jquery_loader.dart';
 import 'package:test/test.dart';
 //import 'dart:html';
-import 'dart:js';
 
 void main() {
   group('loader', () {

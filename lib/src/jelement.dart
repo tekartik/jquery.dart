@@ -8,6 +8,6 @@ class JElement extends JObjectBase with JObjectWithElement {
     if (element == null) {
       return null;
     }
-    return new JElement(jsElement(element));
+    return JElement(jsElement(element));
   }
 }

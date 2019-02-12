@@ -15,7 +15,7 @@ dependencies:
     git:
       url: git://github.com/tekartik/browser_utils.dart
       ref: dart2
-
+    version: '>=0.6.8'
 # dependency_overrides:
 #   tekartik_utils:
 #     path: ../tekartik_utils.dart
@@ -28,3 +28,6 @@ dev_dependencies:
     git:
       url: git://github.com/tekartik/chrome_travis.dart
       ref: dart2
+  build_runner: '>=0.10.1'
+  build_test: '>=0.10.3'
+  build_web_compilers: '>=0.4.2'

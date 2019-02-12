@@ -16,7 +16,7 @@ abstract class JList<T> extends Object {
 
 abstract class JObjectWithElement extends Object {
   JsObject get jsObject;
-  callMethod(String method, [List args]);
+  dynamic callMethod(String method, [List args]);
   void fadeIn([FadeDuration duration]) {
     List args = [];
     if (duration != null) {
@@ -44,28 +44,25 @@ abstract class JObjectWithElement extends Object {
   String get id => element.id;
 
   @deprecated
-  /**
-   * use element.attributes
-   */
+
+  /// use element.attributes
   String getAttr(String name) {
     return jsObject.callMethod('attr', [name]) as String;
   }
 
   @deprecated
-  /**
-   * use element.attributes
-   */
-  setAttr(String name, String value) {
+
+  /// use element.attributes
+  dynamic setAttr(String name, String value) {
     return jsObject.callMethod('attr', [name, value]);
   }
 
   JElement querySelector(String selector) {
-    return new JElement(jsObject.callMethod("find", [selector]) as JsObject);
+    return JElement(jsObject.callMethod("find", [selector]) as JsObject);
   }
 
   JElementList querySelectorAll(String selector) {
-    return new JElementList(
-        jsObject.callMethod("find", [selector]) as JsObject);
+    return JElementList(jsObject.callMethod("find", [selector]) as JsObject);
   }
 
   int get _length => jsObject['length'] as int;

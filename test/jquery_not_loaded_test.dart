@@ -10,7 +10,7 @@ void main() {
       try {
         jQuery;
         throw ('should throw');
-      } catch (e) {}
+      } catch (_) {}
     });
   });
 }
