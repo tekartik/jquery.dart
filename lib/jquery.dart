@@ -16,13 +16,13 @@ part 'src/jobject_base.dart';
 
 part 'src/jobject_element.dart';
 
-Version get jQueryVersionMin => new Version(2, 1, 4);
+Version get jQueryVersionMin => Version(2, 1, 4);
 
-Version get jQueryVersion2Default => new Version(2, 1, 4);
+Version get jQueryVersion2Default => Version(2, 1, 4);
 
-Version get jQueryVersion3Min => new Version(3, 1, 1);
+Version get jQueryVersion3Min => Version(3, 1, 1);
 
-Version get jQueryVersionDefault => new Version(3, 1, 1);
+Version get jQueryVersionDefault => Version(3, 1, 1);
 
 JsObject _querySelector(String selector) {
   return _callJQuery([selector]);
@@ -32,9 +32,7 @@ JsObject _callJQuery(List args) {
   return context.callMethod('jQuery', args) as JsObject;
 }
 
-/**
- * used to version
- */
+/// used to version
 //dynamic __callJQuery(List args) {
 //  return context.callMethod('jQuery', args);
 //}
@@ -80,30 +78,28 @@ class JQuery {
 
   Version get version {
     if (_version == null) {
-      _version = new Version.parse(fn('jquery') as String);
+      _version = Version.parse(fn('jquery') as String);
     }
     return _version;
   }
 
-  fn(Object key) => _jsObject['fn'][key];
+  dynamic fn(Object key) => _jsObject['fn'][key];
 
-  operator [](Object key) => _jsObject[key];
+  dynamic operator [](Object key) => _jsObject[key];
 }
 
 JQuery _jQuery;
 
 JsObject get _jsQuery => context['jQuery'] as JsObject;
 
-/**
- * raw js jQuery object
- * only to use to test if jquery is loaded
- */
+/// raw js jQuery object
+/// only to use to test if jquery is loaded
 @deprecated
 JsObject get jsQuery => _jsQuery;
 
 JQuery get jQuery {
   if (_jQuery == null) {
-    _jQuery = new JQuery._(_jsQuery);
+    _jQuery = JQuery._(_jsQuery);
     if (_jQuery._jsObject == null) {
       throw ("Missing jQuery");
     }
@@ -117,11 +113,11 @@ JQuery get jQuery {
 }
 
 JElement jQuerySelector(String selector) {
-  return new JElement(_querySelector(selector));
+  return JElement(_querySelector(selector));
 }
 
 JElementList jQuerySelectorAll(String selector) {
-  return new JElementList(_querySelector(selector));
+  return JElementList(_querySelector(selector));
 }
 
 /*
@@ -131,11 +127,11 @@ JObjectElement jQueryElement(Element element) {
 */
 
 JElement jElement(Element element) {
-  return new JElement(_queryElement(element));
+  return JElement(_queryElement(element));
 }
 
 JElementList jElementList(List<Element> elements) {
-  return new JElementList(_queryElementList(elements));
+  return JElementList(_queryElementList(elements));
 }
 
 // e.g. 2.1.0

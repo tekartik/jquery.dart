@@ -1,8 +1,10 @@
 part of tekartik_jquery;
 
+// ignore_for_file: non_constant_identifier_names
 class _FadeDurationStringEnum extends Object with FadeDuration {
   final String name;
   _FadeDurationStringEnum(this.name);
+  @override
   dynamic get value => name;
 }
 
@@ -10,17 +12,22 @@ class _FadeDurationNumber extends Object with FadeDuration {
   final int duration;
   _FadeDurationNumber(this.duration);
 
-  int get value => duration;
+  @override
+  dynamic get value => duration;
 }
 
 abstract class FadeDuration {
   factory FadeDuration.withName(String name) {
-    return new _FadeDurationStringEnum(name);
+    return _FadeDurationStringEnum(name);
   }
   factory FadeDuration.withDuration(int ms) {
-    return new _FadeDurationNumber(ms);
+    return _FadeDurationNumber(ms);
   }
   dynamic get value;
-  static final FadeDuration SLOW = new FadeDuration.withName("slow");
-  static final FadeDuration FAST = new FadeDuration.withName("fast");
+  @deprecated
+  static final FadeDuration SLOW = FadeDuration.withName("slow");
+  @deprecated
+  static final FadeDuration FAST = FadeDuration.withName("fast");
+  static final FadeDuration slow = FadeDuration.withName("slow");
+  static final FadeDuration fast = FadeDuration.withName("fast");
 }

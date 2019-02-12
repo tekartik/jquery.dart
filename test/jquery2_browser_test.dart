@@ -1,12 +1,13 @@
 @TestOn("browser")
 library jquery_browser_test;
 
+import 'dart:html';
+import 'dart:js';
+
+import 'package:dev_test/test.dart';
+import 'package:tekartik_browser_utils/js_utils.dart';
 import 'package:tekartik_jquery/jquery.dart';
 import 'package:tekartik_jquery/jquery_loader.dart';
-import 'package:tekartik_browser_utils/js_utils.dart';
-import 'package:dev_test/test.dart';
-import 'dart:js';
-import 'dart:html';
 
 void main() {
   setUp(() async {
@@ -28,12 +29,12 @@ void main() {
 
   group('JElement', () {
     test('element', () {
-      Element element = new DivElement();
+      Element element = DivElement();
       JElement jDiv = jElement(element);
       expect(element, jDiv.element);
     });
     test('call method', () {
-      Element element = new DivElement();
+      Element element = DivElement();
 
       JElement jDiv = jElement(element);
 
@@ -49,14 +50,14 @@ void main() {
 
   group('JElementList', () {
     test('empty', () {
-      JElementList list = new JElementList.empty();
+      JElementList list = JElementList.empty();
       expect(list.length, 0);
       //expect(element, list[0]);
       //expect(element2, list[1]);
     });
     test('elements', () {
-      Element element = new DivElement();
-      Element element2 = new DivElement();
+      Element element = DivElement();
+      Element element2 = DivElement();
       JElementList list = jElementList([element, element2]);
       expect(list.length, 2);
       expect(element, list[0]);
@@ -69,17 +70,17 @@ void main() {
     });
 
     test('querySelector', () {
-      Element element = new DivElement()
+      Element element = DivElement()
         ..id = "my_id"
         ..classes = ["my-class"]
         ..attributes['test'] = 'value1';
 
-      Element element2 = new DivElement()
+      Element element2 = DivElement()
         ..id = "my_id2"
         ..classes = ["my-class"]
         ..attributes['test'] = 'value2';
 
-      Element container = new DivElement();
+      Element container = DivElement();
       container.children.addAll([element, element2]);
       JElement jContainer = jElement(container);
       JElementList list = jContainer.querySelectorAll(".my-class");
@@ -99,7 +100,7 @@ void main() {
 
   group('JObjectElement', () {
     test('id and attr', () {
-      Element element = new DivElement()
+      Element element = DivElement()
         ..id = "my_id"
         ..attributes['test'] = 'value1';
       JElement jDiv = jElement(element);
@@ -108,7 +109,7 @@ void main() {
     });
 
     test('JsObject', () {
-      Element element = new DivElement()
+      Element element = DivElement()
         ..id = "my_id"
         ..attributes['test'] = 'value1';
       JElement jDiv = jElement(element);
@@ -125,11 +126,11 @@ void main() {
       expect(jsObject["context"], element);
       expect(jsObject["length"], 1);
 
-      Element element2 = new DivElement()
+      Element element2 = DivElement()
         ..id = "my_id2"
         ..attributes['test'] = 'value2';
 
-      Element container = new DivElement();
+      Element container = DivElement();
       container.children.addAll([element, element2]);
       //JElement jContainer = jElement(container);
       //jElement.q
