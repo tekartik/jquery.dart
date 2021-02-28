@@ -25,9 +25,9 @@ abstract class FadeDuration {
   }
   dynamic get value;
   @deprecated
-  static final FadeDuration SLOW = FadeDuration.withName("slow");
+  static final FadeDuration SLOW = FadeDuration.withName('slow');
   @deprecated
-  static final FadeDuration FAST = FadeDuration.withName("fast");
-  static final FadeDuration slow = FadeDuration.withName("slow");
-  static final FadeDuration fast = FadeDuration.withName("fast");
+  static final FadeDuration FAST = FadeDuration.withName('fast');
+  static final FadeDuration slow = FadeDuration.withName('slow');
+  static final FadeDuration fast = FadeDuration.withName('fast');
 }

@@ -1,4 +1,4 @@
-@TestOn("browser")
+@TestOn('browser')
 library jquery_browser_test;
 
 import 'package:tekartik_jquery/jquery.dart';
