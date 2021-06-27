@@ -1,6 +1,6 @@
 name: tekartik_jquery
 version: 0.3.0
-author: Alexandre Roux <alex@tekartik.com>
+
 description: jquery for dart
 publish_to: none
 environment:
