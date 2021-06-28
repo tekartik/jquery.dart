@@ -7,13 +7,9 @@ import 'package:pub_semver/pub_semver.dart';
 import 'package:tekartik_browser_utils/js_utils.dart';
 
 part 'src/jeffects.dart';
-
 part 'src/jelement.dart';
-
 part 'src/jelement_list.dart';
-
 part 'src/jobject_base.dart';
-
 part 'src/jobject_element.dart';
 
 Version get jQueryVersionMin => Version(2, 1, 4);
@@ -81,7 +77,7 @@ class JQuery {
     return _version;
   }
 
-  dynamic fn(Object key) => _jsObject!['fn'][key];
+  dynamic fn(Object key) => (_jsObject!['fn'] as JsObject)[key];
 
   dynamic operator [](Object key) => _jsObject![key];
 }
@@ -135,4 +131,5 @@ JElementList jElementList(List<Element> elements) {
 
 // e.g. 2.1.0
 @deprecated
-String? get jQueryVersion => context['jQuery']['fn']['jquery'] as String?;
+String? get jQueryVersion =>
+    ((context['jQuery'] as JsObject)['fn'] as JsObject)['jquery'] as String?;
