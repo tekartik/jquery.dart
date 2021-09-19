@@ -43,14 +43,14 @@ abstract class JObjectWithElement extends Object {
 
   String get id => element!.id;
 
-  @deprecated
+  @Deprecated('Use element.attributes')
 
   /// use element.attributes
   String? getAttr(String name) {
     return jsObject.callMethod('attr', [name]) as String?;
   }
 
-  @deprecated
+  @Deprecated('Use element.attributes')
 
   /// use element.attributes
   dynamic setAttr(String name, String value) {

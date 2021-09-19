@@ -33,7 +33,7 @@ JsObject? _callJQuery(List args) {
 //  return context.callMethod('jQuery', args);
 //}
 
-@deprecated
+@Deprecated('Use jQuery')
 JsObject? queryElement(Element element) {
   return _queryElement(element);
 }
@@ -56,10 +56,10 @@ JsObject? _queryElementList(List<Element> elements) {
 
   // jsObject = jsObject.callMethod('add', elements);
   // as of 2014-06-05 this is the best solutions as above does not work
-  elements.forEach((Element element) {
+  for (var element in elements) {
     jsObject = jsObject!.callMethod('add', [element]) as JsObject?;
     //devPrint(jsObjectToDebugString(jsObject));
-  });
+  }
   return jsObject;
 }
 
@@ -88,7 +88,7 @@ JsObject? get _jsQuery => context['jQuery'] as JsObject?;
 
 /// raw js jQuery object
 /// only to use to test if jquery is loaded
-@deprecated
+@Deprecated('use jQuery')
 JsObject? get jsQuery => _jsQuery;
 
 JQuery? get jQuery {
@@ -130,6 +130,6 @@ JElementList jElementList(List<Element> elements) {
 }
 
 // e.g. 2.1.0
-@deprecated
+@Deprecated('Not supported')
 String? get jQueryVersion =>
     ((context['jQuery'] as JsObject)['fn'] as JsObject)['jquery'] as String?;
