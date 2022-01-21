@@ -24,10 +24,10 @@ abstract class FadeDuration {
     return _FadeDurationNumber(ms);
   }
   dynamic get value;
-  @deprecated
-  static final FadeDuration SLOW = FadeDuration.withName("slow");
-  @deprecated
-  static final FadeDuration FAST = FadeDuration.withName("fast");
-  static final FadeDuration slow = FadeDuration.withName("slow");
-  static final FadeDuration fast = FadeDuration.withName("fast");
+  @Deprecated('Use slow')
+  static final FadeDuration SLOW = FadeDuration.withName('slow');
+  @Deprecated('Use fast')
+  static final FadeDuration FAST = FadeDuration.withName('fast');
+  static final FadeDuration slow = FadeDuration.withName('slow');
+  static final FadeDuration fast = FadeDuration.withName('fast');
 }
