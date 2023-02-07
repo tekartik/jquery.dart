@@ -18,7 +18,7 @@ abstract class JObjectWithElement extends Object {
   JsObject get jsObject;
   dynamic callMethod(String method, [List? args]);
   void fadeIn([FadeDuration? duration]) {
-    var args = [];
+    var args = <Object?>[];
     if (duration != null) {
       args.add(duration.value);
     }
@@ -34,7 +34,7 @@ abstract class JObjectWithElement extends Object {
   }
 
   void fadeOut([FadeDuration? duration]) {
-    var args = [];
+    var args = <Object?>[];
     if (duration != null) {
       args.add(duration.value);
     }
