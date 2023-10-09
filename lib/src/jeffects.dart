@@ -16,7 +16,7 @@ class _FadeDurationNumber extends Object with FadeDuration {
   dynamic get value => duration;
 }
 
-abstract class FadeDuration {
+abstract mixin class FadeDuration {
   factory FadeDuration.withName(String name) {
     return _FadeDurationStringEnum(name);
   }

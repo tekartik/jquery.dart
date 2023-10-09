@@ -4,18 +4,18 @@ version: 0.3.0
 description: jquery for dart
 publish_to: none
 environment:
-  sdk: '>=2.18.0 <3.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 dependencies:
   collection: '>=1.9.1'
   pub_semver: '>=1.3.0'
   tekartik_jquery_asset:
     git:
       url: https://github.com/tekartik/jquery_asset.dart
-      ref: dart2_3
+      ref: dart3a
   tekartik_browser_utils:
     git:
       url: https://github.com/tekartik/browser_utils.dart
-      ref: dart2_3
+      ref: dart3a
     version: '>=0.6.8'
 # dependency_overrides:
 #   tekartik_utils:
@@ -25,10 +25,12 @@ dependencies:
 dev_dependencies:
   test: any
   dev_test: '>=0.9.3'
-  chrome_travis:
+  tekartik_lints:
     git:
-      url: https://github.com/tekartik/chrome_travis.dart
-      ref: dart2_3
+      url: https://github.com/tekartik/common.dart
+      ref: dart3a
+      path: packages/lints
+    version: '>=0.1.0'
   build_runner: '>=0.10.1'
   build_test: '>=0.10.3'
   build_web_compilers: '>=0.4.2'

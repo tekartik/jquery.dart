@@ -8,13 +8,13 @@ class JObjectElement extends JObjectBase with JObjectWithElement {
 }
 */
 
-abstract class JList<T> extends Object {
+abstract mixin class JList<T> extends Object {
   JsObject get jsObject;
   int? get length => jsObject['length'] as int?;
   T? operator [](int index) => jsObject[index] as T?;
 }
 
-abstract class JObjectWithElement extends Object {
+abstract mixin class JObjectWithElement extends Object {
   JsObject get jsObject;
   dynamic callMethod(String method, [List? args]);
   void fadeIn([FadeDuration? duration]) {
