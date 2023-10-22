@@ -1,5 +1,3 @@
-part of tekartik_jquery;
-
 // ignore_for_file: non_constant_identifier_names
 class _FadeDurationStringEnum extends Object with FadeDuration {
   final String name;

@@ -1,12 +1,9 @@
-part of tekartik_jquery;
+import 'dart:html';
+import 'dart:js';
 
-/*
-@deprecated
-class JObjectElement extends JObjectBase with JObjectWithElement {
-  JObjectElement.empty() : super.empty();
-  JObjectElement(JsObject jsObject) : super(jsObject);
-}
-*/
+import 'jeffects.dart';
+import 'jelement.dart';
+import 'jelement_list.dart';
 
 abstract mixin class JList<T> extends Object {
   JsObject get jsObject;

@@ -1,4 +1,6 @@
-part of tekartik_jquery;
+import 'dart:js';
+
+import 'package:tekartik_browser_utils/js_utils.dart';
 
 abstract class JObjectBase {
   JsObject jsObject;

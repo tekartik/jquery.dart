@@ -4,13 +4,14 @@ import 'dart:html';
 import 'dart:js';
 
 import 'package:pub_semver/pub_semver.dart';
-import 'package:tekartik_browser_utils/js_utils.dart';
 
-part 'src/jeffects.dart';
-part 'src/jelement.dart';
-part 'src/jelement_list.dart';
-part 'src/jobject_base.dart';
-part 'src/jobject_element.dart';
+import 'jquery.dart';
+
+export 'src/jeffects.dart';
+export 'src/jelement.dart';
+export 'src/jelement_list.dart';
+export 'src/jobject_base.dart';
+export 'src/jobject_element.dart';
 
 Version get jQueryVersionMin => Version(2, 1, 4);
 
