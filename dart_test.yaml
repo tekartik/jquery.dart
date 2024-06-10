@@ -1,0 +1,5 @@
+platforms:
+  - chrome
+  - vm
+compilers:
+  - dart2js

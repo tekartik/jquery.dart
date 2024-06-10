@@ -1,9 +1,10 @@
 import 'dart:js';
 
-import 'package:tekartik_browser_utils/js_utils.dart';
+import 'package:tekartik_js_utils/js_utils.dart';
 
 abstract class JObjectBase {
   JsObject jsObject;
+
   JObjectBase(this.jsObject);
 
   dynamic callMethod(String method, [List? args]) {

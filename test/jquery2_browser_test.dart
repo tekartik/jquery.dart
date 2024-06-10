@@ -5,9 +5,9 @@ import 'dart:html';
 import 'dart:js';
 
 import 'package:dev_test/test.dart';
-import 'package:tekartik_browser_utils/js_utils.dart';
 import 'package:tekartik_jquery/jquery.dart';
 import 'package:tekartik_jquery/jquery_loader.dart';
+import 'package:tekartik_js_utils/js_utils.dart';
 
 void main() {
   setUp(() async {
