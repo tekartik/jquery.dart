@@ -29,7 +29,7 @@ dependencies:
 #     path: ../tekartik_jquery_asset.dart
 dev_dependencies:
   test: any
-  dev_test: '>=0.9.3'
+  dev_build: '>=0.9.3'
   tekartik_lints:
     git:
       url: https://github.com/tekartik/common.dart
