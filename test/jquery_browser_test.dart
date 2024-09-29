@@ -1,5 +1,5 @@
 @TestOn('browser && !wasm')
-library jquery_browser_test;
+library;
 
 import 'dart:html';
 import 'dart:js';

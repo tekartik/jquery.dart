@@ -1,4 +1,4 @@
-library tekartik_jquery_loader;
+library;
 
 import 'dart:async';
 import 'dart:js';

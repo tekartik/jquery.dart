@@ -1,5 +1,5 @@
 @TestOn('browser')
-library jquery_browser_test;
+library;
 
 import 'package:tekartik_jquery/jquery.dart';
 import 'package:test/test.dart';

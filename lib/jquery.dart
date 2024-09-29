@@ -1,4 +1,4 @@
-library tekartik_jquery;
+library;
 
 import 'dart:html';
 import 'dart:js';

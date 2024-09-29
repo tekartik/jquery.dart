@@ -1,5 +1,5 @@
 @TestOn('browser')
-library jquery_browser_test;
+library;
 
 import 'dart:js';
 
