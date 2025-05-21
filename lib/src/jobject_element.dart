@@ -41,14 +41,12 @@ abstract mixin class JObjectWithElement extends Object {
   String get id => element!.id;
 
   @Deprecated('Use element.attributes')
-
   /// use element.attributes
   String? getAttr(String name) {
     return jsObject.callMethod('attr', [name]) as String?;
   }
 
   @Deprecated('Use element.attributes')
-
   /// use element.attributes
   dynamic setAttr(String name, String value) {
     return jsObject.callMethod('attr', [name, value]);

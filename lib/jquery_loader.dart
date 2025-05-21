@@ -23,10 +23,12 @@ Future<JQuery?> loadJQuery({Version? version}) async {
   // for 2.1.0 await loadJavascriptScript("packages/tekartik_jquery_asset/jquery/$version/jquery-$version.min.js");
   if (version < jQueryVersion3Min) {
     await loadJavascriptScript(
-        'packages/tekartik_jquery_asset/$version/jquery-$version.min.js');
+      'packages/tekartik_jquery_asset/$version/jquery-$version.min.js',
+    );
   } else {
     await loadJavascriptScript(
-        'packages/tekartik_jquery_asset/$version/jquery.min.js');
+      'packages/tekartik_jquery_asset/$version/jquery.min.js',
+    );
   }
   return jQuery;
 }
@@ -45,6 +47,7 @@ Future<JQuery?> loadCdnJQuery({Version? version}) async {
   // load jquery from google
   // https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js
   await loadJavascriptScript(
-      '//ajax.googleapis.com/ajax/libs/jquery/$version/jquery.min.js');
+    '//ajax.googleapis.com/ajax/libs/jquery/$version/jquery.min.js',
+  );
   return jQuery;
 }

@@ -70,15 +70,17 @@ void main() {
     });
 
     test('querySelector', () {
-      Element element = DivElement()
-        ..id = 'my_id'
-        ..classes = ['my-class']
-        ..attributes['test'] = 'value1';
+      Element element =
+          DivElement()
+            ..id = 'my_id'
+            ..classes = ['my-class']
+            ..attributes['test'] = 'value1';
 
-      Element element2 = DivElement()
-        ..id = 'my_id2'
-        ..classes = ['my-class']
-        ..attributes['test'] = 'value2';
+      Element element2 =
+          DivElement()
+            ..id = 'my_id2'
+            ..classes = ['my-class']
+            ..attributes['test'] = 'value2';
 
       Element container = DivElement();
       container.children.addAll([element, element2]);
@@ -100,18 +102,20 @@ void main() {
 
   group('JObjectElement', () {
     test('id and attr', () {
-      Element element = DivElement()
-        ..id = 'my_id'
-        ..attributes['test'] = 'value1';
+      Element element =
+          DivElement()
+            ..id = 'my_id'
+            ..attributes['test'] = 'value1';
       var jDiv = jElement(element)!;
       expect(jDiv.id, 'my_id');
       expect(jDiv.element!.attributes['test'], 'value1');
     });
 
     test('JsObject', () {
-      Element element = DivElement()
-        ..id = 'my_id'
-        ..attributes['test'] = 'value1';
+      Element element =
+          DivElement()
+            ..id = 'my_id'
+            ..attributes['test'] = 'value1';
       var jDiv = jElement(element)!;
       var jsObject = jDiv.jsObject;
       expect(jDiv.jsObject.runtimeType, JsObject);
@@ -126,9 +130,10 @@ void main() {
       //expect(jsObject['context'], element);
       expect(jsObject['length'], 1);
 
-      Element element2 = DivElement()
-        ..id = 'my_id2'
-        ..attributes['test'] = 'value2';
+      Element element2 =
+          DivElement()
+            ..id = 'my_id2'
+            ..attributes['test'] = 'value2';
 
       Element container = DivElement();
       container.children.addAll([element, element2]);
