@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:js';
 
 import 'package:tekartik_js_utils/js_utils.dart';
