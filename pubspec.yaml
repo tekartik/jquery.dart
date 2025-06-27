@@ -4,7 +4,7 @@ version: 0.3.0
 description: jquery for dart
 publish_to: none
 environment:
-  sdk: ^3.7.0
+  sdk: ^3.8.0
 dependencies:
   collection: ">=1.18.0"
   pub_semver: ">=2.1.4"
