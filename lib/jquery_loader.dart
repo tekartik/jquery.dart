@@ -16,7 +16,9 @@ Future<JQuery?> loadJQuery({Version? version}) async {
   // already loaded?
   if (context['jQuery'] != null) {
     if (jQuery!.version! < version) {
-      throw ('jQuery version expected $version but currently loaded is ${jQuery!.version}');
+      throw StateError(
+        'jQuery version expected $version but currently loaded is ${jQuery!.version}',
+      );
     }
     return jQuery;
   }
@@ -41,7 +43,9 @@ Future<JQuery?> loadCdnJQuery({Version? version}) async {
   // already loaded?
   if (context['jQuery'] != null) {
     if (jQuery!.version! < version) {
-      throw ('jQuery version expected $version but currently loaded is ${jQuery!.version}');
+      throw StateError(
+        'jQuery version expected $version but currently loaded is ${jQuery!.version}',
+      );
     }
     return jQuery;
   }

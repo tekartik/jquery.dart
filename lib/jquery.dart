@@ -98,13 +98,15 @@ JQuery? get jQuery {
   if (_jQuery == null) {
     _jQuery = JQuery._(_jsQuery);
     if (_jQuery!._jsObject == null) {
-      throw ('Missing jQuery');
+      throw StateError('Missing jQuery');
     }
     // test version
     var versionMin = jQueryVersionMin;
     if (_jQuery!.version! < jQueryVersionMin) {
-      throw ("""
-jquery: invalid jQuery version '${_jQuery!.version}' expected min $versionMin""");
+      throw StateError(
+        """
+jquery: invalid jQuery version '${_jQuery!.version}' expected min $versionMin""",
+      );
     }
   }
   return _jQuery;

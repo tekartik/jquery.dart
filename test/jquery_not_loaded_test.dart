@@ -9,8 +9,10 @@ void main() {
     test('not loaded', () {
       try {
         jQuery;
-        throw ('should throw');
-      } catch (_) {}
+        throw TestFailure('should throw');
+      } catch (e) {
+        expect(e, isNot(isA<TestFailure>()));
+      }
     });
   });
 }
