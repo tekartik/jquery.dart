@@ -96,18 +96,18 @@ JsObject? get jsQuery => _jsQuery;
 
 JQuery? get jQuery {
   if (_jQuery == null) {
-    _jQuery = JQuery._(_jsQuery);
-    if (_jQuery!._jsObject == null) {
+    // Validate before caching so that it keeps throwing until loaded
+    var jq = JQuery._(_jsQuery);
+    if (jq._jsObject == null) {
       throw StateError('Missing jQuery');
     }
     // test version
     var versionMin = jQueryVersionMin;
-    if (_jQuery!.version! < jQueryVersionMin) {
-      throw StateError(
-        """
-jquery: invalid jQuery version '${_jQuery!.version}' expected min $versionMin""",
-      );
+    if (jq.version! < jQueryVersionMin) {
+      throw StateError("""
+jquery: invalid jQuery version '${jq.version}' expected min $versionMin""");
     }
+    _jQuery = jq;
   }
   return _jQuery;
 }
