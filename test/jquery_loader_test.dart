@@ -1,36 +1,22 @@
-// ignore_for_file: deprecated_member_use
-
 @TestOn('browser')
 library;
 
-import 'dart:js';
+import 'dart:js_interop';
+import 'dart:js_interop_unsafe';
 
 import 'package:tekartik_jquery/jquery.dart';
 import 'package:tekartik_jquery/jquery_loader.dart';
 import 'package:test/test.dart';
 
-//import 'dart:html';
-
 void main() {
   group('loader', () {
     test('version', () async {
       // Simple test we make sure you run unit test when jquery is updated...
-      expect(context['jQuery'], isNull);
+      expect(globalContext['jQuery'], isNull);
       var jq = (await loadJQuery())!;
-      expect(context['jQuery'], isNotNull);
+      expect(globalContext['jQuery'], isNotNull);
       expect(jq.version, jQueryVersionDefault);
       expect(jQuery!.version, jQueryVersionDefault);
-
-      /*
-      //quick test
-      Element element = new DivElement();
-
-      JElement jDiv = jElement(element);
-
-      expect(jDiv.callMethod('attr', ['id']), null);
-      element.id = 'my_id';
-      expect(jDiv.callMethod('attr', ['id']), 'my_id');
-      */
     });
   });
 }

@@ -1,11 +1,17 @@
-// ignore_for_file: deprecated_member_use
+import 'dart:js_interop';
+import 'dart:js_interop_unsafe';
 
-import 'dart:js';
+import 'js_prv.dart';
 
-JsObject? querySelector(String selector) {
+/// `jQuery(selector)`.
+JSObject? querySelector(String selector) {
   return callJQuery([selector]);
 }
 
-JsObject? callJQuery(List args) {
-  return context.callMethod('jQuery', args) as JsObject?;
+/// `jQuery(...args)`, throws a [StateError] when jQuery is not loaded.
+JSObject? callJQuery(List<Object?> args) {
+  if (globalContext['jQuery'] == null) {
+    throw StateError('Missing jQuery');
+  }
+  return jsCall(globalContext, 'jQuery', args) as JSObject?;
 }

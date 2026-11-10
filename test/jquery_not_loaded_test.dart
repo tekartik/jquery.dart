@@ -1,9 +1,8 @@
-// ignore_for_file: deprecated_member_use
-
 @TestOn('browser')
 library;
 
-import 'dart:js';
+import 'dart:js_interop';
+import 'dart:js_interop_unsafe';
 
 import 'package:pub_semver/pub_semver.dart';
 import 'package:tekartik_jquery/jquery.dart';
@@ -29,17 +28,17 @@ void main() {
     test('version too old then ok', () {
       try {
         // fake jQuery object, only fn.jquery is read
-        context['jQuery'] = JsObject.jsify({
+        globalContext['jQuery'] = {
           'fn': {'jquery': '1.0.0'},
-        });
+        }.jsify();
         expectJQueryThrows();
         expectJQueryThrows();
-        context['jQuery'] = JsObject.jsify({
+        globalContext['jQuery'] = {
           'fn': {'jquery': '3.0.0'},
-        });
+        }.jsify();
         expect(jQuery!.version, Version(3, 0, 0));
       } finally {
-        context.deleteProperty('jQuery');
+        globalContext.delete('jQuery'.toJS);
       }
     });
   });

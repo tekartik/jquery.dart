@@ -1,13 +1,17 @@
-// ignore_for_file: deprecated_member_use
-
+/// jQuery from Dart (dart:js_interop, dart2js and dart2wasm): the [jQuery]
+/// of the page and [JElement] / [JElementList] wrappers of jQuery objects.
+/// Load jQuery first with `package:tekartik_jquery/jquery_loader.dart`.
 library;
 
-import 'dart:html';
-import 'dart:js';
+import 'dart:js_interop';
+import 'dart:js_interop_unsafe';
 
 import 'package:pub_semver/pub_semver.dart';
+import 'package:web/web.dart' as web;
 
 import 'jquery.dart';
+import 'src/js_prv.dart';
+import 'src/utils_prv.dart';
 
 export 'src/jeffects.dart';
 export 'src/jelement.dart';
@@ -15,85 +19,84 @@ export 'src/jelement_list.dart';
 export 'src/jobject_base.dart';
 export 'src/jobject_element.dart';
 
+/// The oldest jQuery accepted by [jQuery].
 Version get jQueryVersionMin => Version(2, 1, 4);
 
+/// The jQuery 2 of tekartik_jquery_asset.
 Version get jQueryVersion2Default => Version(2, 1, 4);
 
+/// The first jQuery 3 of tekartik_jquery_asset.
 Version get jQueryVersion3Min => Version(3, 1, 1);
 
+/// The jQuery loaded by default.
 Version get jQueryVersionDefault => Version(3, 1, 1);
 
-JsObject? _querySelector(String selector) {
-  return _callJQuery([selector]);
-}
-
-JsObject? _callJQuery(List args) {
-  return context.callMethod('jQuery', args) as JsObject?;
-}
-
-/// used to version
-//dynamic __callJQuery(List args) {
-//  return context.callMethod('jQuery', args);
-//}
-
+/// `jQuery(element)`.
 @Deprecated('Use jQuery')
-JsObject? queryElement(Element element) {
+JSObject? queryElement(web.Element element) {
   return _queryElement(element);
 }
 
-JsObject? get jsDocument {
-  return _callJQuery([document]);
+/// `jQuery(document)`.
+JSObject? get jsDocument {
+  return callJQuery([web.document]);
 }
 
-JsObject? jsElement(Element element) {
+/// `jQuery(element)`.
+JSObject? jsElement(web.Element element) {
   return _queryElement(element);
 }
 
-JsObject? _queryElement(Element element) {
-  return _callJQuery([element]);
+JSObject? _queryElement(web.Element element) {
+  return callJQuery([element]);
 }
 
-JsObject? _queryElementList(List<Element> elements) {
-  var jsObject = _callJQuery([]); // Notice the enclosed empty array
-  //devPrint(jsObjectToDebugString(jsObject));
-
-  // jsObject = jsObject.callMethod('add', elements);
-  // as of 2014-06-05 this is the best solutions as above does not work
+JSObject? _queryElementList(List<web.Element> elements) {
+  var jsObject = callJQuery([]); // An empty jQuery object
   for (var element in elements) {
-    jsObject = jsObject!.callMethod('add', [element]) as JsObject?;
-    //devPrint(jsObjectToDebugString(jsObject));
+    jsObject = jsCall(jsObject!, 'add', [element]) as JSObject?;
   }
   return jsObject;
 }
 
+/// The jQuery function of the page.
 class JQuery {
-  final JsObject? _jsObject;
+  final JSObject? _jsObject;
 
-  JsObject? get jsObject => _jsObject;
+  /// The `jQuery` function.
+  JSObject? get jsObject => _jsObject;
 
   JQuery._(this._jsObject);
 
   Version? _version;
 
+  /// Its version (`jQuery.fn.jquery`).
   Version? get version {
     _version ??= Version.parse(fn('jquery') as String);
     return _version;
   }
 
-  dynamic fn(Object key) => (_jsObject!['fn'] as JsObject)[key];
+  /// `jQuery.fn[key]`: a String, num or bool as a Dart value, other values
+  /// as JS values.
+  dynamic fn(Object key) =>
+      jsResult((_jsObject!['fn'] as JSObject).getProperty(jsArg(key)!));
 
-  dynamic operator [](Object key) => _jsObject![key];
+  /// `jQuery[key]`, converted as [fn].
+  dynamic operator [](Object key) =>
+      jsResult(_jsObject!.getProperty(jsArg(key)!));
 }
 
 JQuery? _jQuery;
 
-JsObject? get _jsQuery => context['jQuery'] as JsObject?;
+JSObject? get _jsQuery => globalContext.getProperty<JSObject?>('jQuery'.toJS);
 
 /// raw js jQuery object
 /// only to use to test if jquery is loaded
 @Deprecated('use jQuery')
-JsObject? get jsQuery => _jsQuery;
+JSObject? get jsQuery => _jsQuery;
 
+/// The jQuery of the page, cached once valid. Throws a [StateError] when
+/// jQuery is not loaded or older than [jQueryVersionMin].
 JQuery? get jQuery {
   if (_jQuery == null) {
     // Validate before caching so that it keeps throwing until loaded
@@ -112,29 +115,30 @@ jquery: invalid jQuery version '${jq.version}' expected min $versionMin""");
   return _jQuery;
 }
 
+/// `jQuery(selector)`, never null (an empty jQuery object when nothing
+/// matches).
 JElement? jQuerySelector(String selector) {
-  return JElement(_querySelector(selector)!);
+  return JElement(querySelector(selector)!);
 }
 
+/// `jQuery(selector)` as a list.
 JElementList jQuerySelectorAll(String selector) {
-  return JElementList(_querySelector(selector)!);
+  return JElementList(querySelector(selector)!);
 }
 
-/*
-JObjectElement jQueryElement(Element element) {
-  return new JObjectElement(_queryElement(element));
-}
-*/
-
-JElement? /*!*/ jElement(Element element) {
+/// `jQuery(element)`.
+JElement? jElement(web.Element element) {
   return JElement(_queryElement(element)!);
 }
 
-JElementList jElementList(List<Element> elements) {
+/// A jQuery object on [elements].
+JElementList jElementList(List<web.Element> elements) {
   return JElementList(_queryElementList(elements)!);
 }
 
-// e.g. 2.1.0
+/// The version of the jQuery of the page (e.g. 2.1.0).
 @Deprecated('Not supported')
 String? get jQueryVersion =>
-    ((context['jQuery'] as JsObject)['fn'] as JsObject)['jquery'] as String?;
+    ((globalContext['jQuery'] as JSObject)['fn'] as JSObject)['jquery']
+            .dartify()
+        as String?;

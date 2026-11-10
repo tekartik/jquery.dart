@@ -1,5 +1,5 @@
 name: tekartik_jquery
-version: 0.3.0
+version: 0.4.0
 
 description: jquery for dart
 publish_to: none
@@ -15,18 +15,14 @@ dependencies:
     git:
       url: https://github.com/tekartik/browser_utils.dart
     version: '>=0.6.8'
-  tekartik_js_utils:
+  tekartik_js_utils_interop:
     git:
       url: https://github.com/tekartik/js_utils.dart
-      path: js_utils
+      path: js_utils_interop
+  web: ">=1.1.0"
   tekartik_common_utils:
     git:
       url: https://github.com/tekartik/common_utils.dart
-# dependency_overrides:
-#   tekartik_utils:
-#     path: ../tekartik_utils.dart
-#   tekartik_jquery_asset:
-#     path: ../tekartik_jquery_asset.dart
 dev_dependencies:
   test: ">=1.31.0"
   dev_build: ">=1.1.7+3"
